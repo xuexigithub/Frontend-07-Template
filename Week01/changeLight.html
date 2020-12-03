@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 三个灯太贵了，只用一个灯吧 -->
+  <div class="light"></div>
+
+  <style>
+    .light {
+      float: left;
+      width: 100px;
+      height: 100px;
+      background-color: grey;
+      border-radius: 50px;
+      margin: 20px;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .yellow {
+      background-color: yellow;
+    }
+
+    .red {
+      background-color: red;
+    }
+  </style>
+  
+  <script>
+    // callback 版本
+    function changeColor(color) {
+      let lights = document.getElementsByTagName('div')
+      // 这有优雅的处理方式吗 
+      lights[0].classList.remove('red')
+      lights[0].classList.remove('yellow')
+      lights[0].classList.remove('green')
+      lights[0].classList.add(color)
+      console.log(lights)
+    }
+
+    function go() {
+      changeColor('green')
+      setTimeout(function () {
+        changeColor('yellow')
+        setTimeout(() => {
+          changeColor('red')
+          setTimeout(() => {
+            go()
+          }, 1000)
+        }, 2000)
+      }, 2000)
+    }
+    // promise版本
+    let sleep = function(time){
+      return new Promise((resolve,reject)=>{
+        setTimeout(resolve,time)
+      })
+    }
+    async function go(){
+      while(true){
+        changeColor('green')
+        await sleep(3000)
+        changeColor('yellow')
+        await sleep(2000)
+        changeColor('red')
+        await sleep(1000)
+      }
+    }
+    go()
+    
+  </script>
+</body>
+
+</html>
