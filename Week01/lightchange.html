@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="light green"></div>
+</div>
+
+<style>
+    .container {
+        float:left;
+        width: 600px;
+        height: 300px;
+    }
+    .light {
+        float:left;
+        width: 100px;
+        height: 100px;
+        background-color:grey;
+        border-radius: 50px;
+        margin:20px;
+    }
+    .green,.lightUp {
+        background-color: green;
+    }
+    .yellow,.lightUp {
+        background-color: yellow;
+    }
+    .red,.lightUp {
+        background-color: red;
+    }
+</style>
+
+<script>
+  let lights = document.getElementsByClassName("light");
+
+  let changeColor = function(color,time){
+    setTimeout(()=>{
+      lights[0].classList.add(color)
+    },time)
+    
+  }
+
+  function start(){
+    changeColor('yellow',2000)
+    setTimeout(()=>{
+      changeColor('red',3000)
+    })
+  }
+  start()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    // let sleep = function(time) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(resolve, time);
+    //     })
+    // }
+    // let changeColor = function(color) {
+    //     let lights = document.getElementsByClassName("light");
+    //     for (let i=0; i<3; i++) {
+    //         lights[i].classList.remove("lightUp");
+    //     }
+    //     document.getElementsByClassName(color)[0].classList.add("lightUp");
+        
+    // }
+
+    // async function start() {
+    //     while(true) {
+    //         changeColor("green");
+    //         await sleep(3000);
+
+    //         changeColor("yellow");
+    //         await sleep(1000);
+
+    //         changeColor("red");
+    //         await sleep(2000);
+    //     }
+        
+    // }
+
+    // window.onload = function(){
+    //     start();
+    // }
+</script>

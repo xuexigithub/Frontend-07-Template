@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tic tic toe</title>
+</head>
+<style>
+  .cell{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background: green;
+    border: 1px solid #eee;
+    line-height: 100px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 50px;
+  }
+</style>
+<body>
+  <div id="board">
+
+  </div>
+  <script>
+    let pattern = [
+      [2,0,0],
+      [0,1,0],
+      [0,0,0]
+    ]
+    let color = 1;
+    console.log(pattern)
+    function show(){
+      let board = document.getElementById('board')
+      board.innerHTML = ''
+      const boardLen = pattern[0].length
+      for(let i = 0; i<boardLen;i++){
+        for(let j = 0; j<boardLen;j++){
+          let cell = document.createElement('div')
+          cell.classList.add('cell')
+          console.log(pattern[j][i])
+          cell.innerText = 
+          pattern[i][j] == 2 ? 'X' : 
+          pattern[i][j] == 1 ? "O" : "";
+          cell.addEventListener('click',function(){
+            move(i,j)
+          })
+          board.appendChild(cell)
+        }
+        board.appendChild(document.createElement('br'))
+      }
+    }
+    function move(x,y){
+      check()
+      pattern[x][y] = color
+      color = 2/color;
+      show()
+    }
+    function check(){
+      for(let i = 0;i<3;i++){
+        let win = true;
+        for(let j = 0;j<3;j++){
+          if(pattern[i][j] !== color){
+            win = false
+          }
+        }
+        if(win)
+          return true
+        {
+            let win = true;
+            for(let j = 0;j<3;j++){
+              if(pattern[j][2-j] !== color){
+                win = false
+              }
+            }
+            if(win)
+              return true
+        }
+        {
+          let win = true;
+          for(let j = 0;j<3;j++){
+            if(pattern[j][j] !== color){
+              win = false
+            }
+          }
+          if(win)
+            return true
+        }
+      }
+      return false
+    }
+    show(pattern)
+  </script>
+</body>
+</html>
